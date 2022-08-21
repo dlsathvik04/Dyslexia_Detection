@@ -3,8 +3,4 @@ azure-cognitiveservices-vision-computervision==0.9.0
 language-tool-python==2.7.1
 Pillow==9.2.0
 textblob==0.17.1
-<<<<<<< HEAD
 streamlit==1.12.0
-=======
-streamlit==1.12.0
->>>>>>> 9bc66e4f26f6a5374883e624fe0965762359c518
