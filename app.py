@@ -227,6 +227,7 @@ if st.button("Predict", help="click after uploading the correct image"):
             st.write("from the tests on this handwriting sample there is very high chance that this person is sufferning from dyslexia or dysgraphia")
     except:
         st.write("something went wrong at the server end please refresh the application and try again")
+        print("api error")
         
     # feature_array = get_feature_array("temp.jpg")
     # result = score(feature_array)
