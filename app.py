@@ -1,7 +1,6 @@
 import streamlit as st
 from PIL import Image
 import os
-import enchant
 from textblob import TextBlob
 import language_tool_python  
 import requests
@@ -14,6 +13,28 @@ from msrest.authentication import CognitiveServicesCredentials
 import time
 
 from abydos.phonetic import Soundex, Metaphone, Caverphone, NYSIIS
+
+#'''-------------------------------------------------------------------------------------------------------------------------------------------------------------------------'''
+
+def levenshtein(s1, s2):
+    if len(s1) < len(s2):
+        return levenshtein(s2, s1)
+
+    # len(s1) >= len(s2)
+    if len(s2) == 0:
+        return len(s1)
+
+    previous_row = range(len(s2) + 1)
+    for i, c1 in enumerate(s1):
+        current_row = [i + 1]
+        for j, c2 in enumerate(s2):
+            insertions = previous_row[j + 1] + 1 # j+1 instead of j since previous_row and current_row are one character longer
+            deletions = current_row[j] + 1       # than s2
+            substitutions = previous_row[j] + (c1 != c2)
+            current_row.append(min(insertions, deletions, substitutions))
+        previous_row = current_row
+    
+    return previous_row[-1]
 
 # '''-------------------------------------------------------------------------------------------------------------------------------------------------------------------------'''
 
@@ -60,7 +81,7 @@ def image_to_text(path):
 # method for finding the spelling accuracy
 def spelling_accuracy(extracted_text):
     spell_corrected  = TextBlob(extracted_text).correct()
-    return ((len(extracted_text) - (enchant.utils.levenshtein(extracted_text, spell_corrected)))/(len(extracted_text)+1))*100
+    return ((len(extracted_text) - (levenshtein(extracted_text, spell_corrected)))/(len(extracted_text)+1))*100
 
 # '''-------------------------------------------------------------------------------------------------------------------------------------------------------------------------'''
 
@@ -124,15 +145,15 @@ def percentage_of_phonetic_accuraccy(extracted_text: str):
     spell_corrected_caverphone_string = " ".join(spell_corrected_phonetics_caverphone)
     spell_corrected_nysiis_string = " ".join(spell_corrected_phonetics_nysiis)
 
-    soundex_score = (len(extracted_soundex_string)-(enchant.utils.levenshtein(extracted_soundex_string, spell_corrected_soundex_string)))/(len(extracted_soundex_string)+1)
+    soundex_score = (len(extracted_soundex_string)-(levenshtein(extracted_soundex_string, spell_corrected_soundex_string)))/(len(extracted_soundex_string)+1)
     # print(spell_corrected_soundex_string)
     # print(extracted_soundex_string)
     # print(soundex_score)
-    metaphone_score = (len(extracted_metaphone_string)-(enchant.utils.levenshtein(extracted_metaphone_string, spell_corrected_metaphone_string)))/(len(extracted_metaphone_string)+1)
+    metaphone_score = (len(extracted_metaphone_string)-(levenshtein(extracted_metaphone_string, spell_corrected_metaphone_string)))/(len(extracted_metaphone_string)+1)
     # print(metaphone_score)
-    caverphone_score = (len(extracted_caverphone_string)-(enchant.utils.levenshtein(extracted_caverphone_string, spell_corrected_caverphone_string)))/(len(extracted_caverphone_string)+1)
+    caverphone_score = (len(extracted_caverphone_string)-(levenshtein(extracted_caverphone_string, spell_corrected_caverphone_string)))/(len(extracted_caverphone_string)+1)
     # print(caverphone_score)
-    nysiis_score = (len(extracted_nysiis_string)-(enchant.utils.levenshtein(extracted_nysiis_string, spell_corrected_nysiis_string)))/(len(extracted_nysiis_string)+1)
+    nysiis_score = (len(extracted_nysiis_string)-(levenshtein(extracted_nysiis_string, spell_corrected_nysiis_string)))/(len(extracted_nysiis_string)+1)
     # print(nysiis_score)
     return ((0.5*caverphone_score + 0.2*soundex_score + 0.2*metaphone_score + 0.1 * nysiis_score))*100
 
