@@ -59,7 +59,6 @@ pyrsistent==0.18.1
 python-dateutil==2.8.2
 pytz==2022.2.1
 pytz-deprecation-shim==0.1.0.post0
-pywin32==304
 pyzmq==23.2.1
 regex==2022.8.17
 requests==2.28.1
