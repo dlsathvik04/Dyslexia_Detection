@@ -146,15 +146,9 @@ def percentage_of_phonetic_accuraccy(extracted_text: str):
     spell_corrected_nysiis_string = " ".join(spell_corrected_phonetics_nysiis)
 
     soundex_score = (len(extracted_soundex_string)-(levenshtein(extracted_soundex_string, spell_corrected_soundex_string)))/(len(extracted_soundex_string)+1)
-    # print(spell_corrected_soundex_string)
-    # print(extracted_soundex_string)
-    # print(soundex_score)
     metaphone_score = (len(extracted_metaphone_string)-(levenshtein(extracted_metaphone_string, spell_corrected_metaphone_string)))/(len(extracted_metaphone_string)+1)
-    # print(metaphone_score)
     caverphone_score = (len(extracted_caverphone_string)-(levenshtein(extracted_caverphone_string, spell_corrected_caverphone_string)))/(len(extracted_caverphone_string)+1)
-    # print(caverphone_score)
     nysiis_score = (len(extracted_nysiis_string)-(levenshtein(extracted_nysiis_string, spell_corrected_nysiis_string)))/(len(extracted_nysiis_string)+1)
-    # print(nysiis_score)
     return ((0.5*caverphone_score + 0.2*soundex_score + 0.2*metaphone_score + 0.1 * nysiis_score))*100
 
 #'''-------------------------------------------------------------------------------------------------------------------------------------------------------------------------''' 
@@ -202,7 +196,6 @@ def score(input):
     return var0
 
 # '''-------------------------------------------------------------------------------------------------------------------------------------------------------------------------'''
-
 # deploying the model
 
 st.title("Dyslexia Detection Using Handwriting Samples")
@@ -228,10 +221,3 @@ if st.button("Predict", help="click after uploading the correct image"):
     except:
         st.write("something went wrong at the server end please refresh the application and try again")
         print("api error")
-        
-    # feature_array = get_feature_array("temp.jpg")
-    # result = score(feature_array)
-    # if result[0] == 1:
-    #     st.write("from the tests on this handwriting sample there is very slim chance that this person is sufferning from dyslexia or dysgraphia")
-    # else:
-    #     st.write("from the tests on this handwriting sample there is very high chance that this person is sufferning from dyslexia or dysgraphia")
