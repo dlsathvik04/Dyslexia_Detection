@@ -218,6 +218,7 @@ if st.button("Predict", help="click after uploading the correct image"):
             st.write("from the tests on this handwriting sample there is very slim chance that this person is sufferning from dyslexia or dysgraphia")
         else:
             st.write("from the tests on this handwriting sample there is very high chance that this person is sufferning from dyslexia or dysgraphia")
+        os.remove("temp.jpg")
     except:
         st.write("something went wrong at the server end please refresh the application and try again")
         print("api error")
