@@ -198,27 +198,50 @@ def score(input):
 # '''-------------------------------------------------------------------------------------------------------------------------------------------------------------------------'''
 # deploying the model
 
-st.title("Dyslexia Detection Using Handwriting Samples")
-st.write("This is a simple web app that works based on machine learning techniques. This application can predict the presence of dyslexia from the handwriting sample of a person.")
-image = st.file_uploader("Upload the handwriting sample that you want to test", type=["png", "jpg", "jpeg"])
+st.set_page_config(page_title="Dyslexia Webapp")
 
-if image is not None:
-    st.write("please review the image selected")
-    st.write(image.name)
-    image_uploaded = Image.open(image)
-    image_uploaded.save("temp.jpg")
-    st.image(image_uploaded, width=224)
-    
+hide_menu_style = """
+<style>
+#MainMenu {visibility: hidden; }
+footer {visibility: hidden; }
+</style>
+"""
+
+
+
+st.markdown(hide_menu_style, unsafe_allow_html=True)
+st.title("   Dyslexia Detection Using Handwriting Samples")
+st.write("This is a simple web app that works based on machine learning techniques. This application can predict the presence of dyslexia from the handwriting sample of a person.")
+
+
+with st.container():
+    st.write("---")
+    image = st.file_uploader("Upload the handwriting sample that you want to test", type=["jpg"])
+    if image is not None:
+        st.write("Please review the image selected")
+        st.write(image.name)
+        image_uploaded = Image.open(image)
+        image_uploaded.save("temp.jpg")
+        st.image(image_uploaded, width=224)
     
 if st.button("Predict", help="click after uploading the correct image"):
     try:
         feature_array = get_feature_array("temp.jpg")
         result = score(feature_array)
         if result[0] == 1:
-            st.write("from the tests on this handwriting sample there is very slim chance that this person is sufferning from dyslexia or dysgraphia")
+            st.write("From the tests on this handwriting sample there is very slim chance that this person is sufferning from dyslexia or dysgraphia")
         else:
-            st.write("from the tests on this handwriting sample there is very high chance that this person is sufferning from dyslexia or dysgraphia")
-        os.remove("temp.jpg")
+            st.write("From the tests on this handwriting sample there is very high chance that this person is sufferning from dyslexia or dysgraphia")
     except:
-        st.write("something went wrong at the server end please refresh the application and try again")
-        print("api error")
+        st.write("Something went wrong at the server end please refresh the application and try again")
+
+st.write("---")
+st.subheader("About APP: ")
+st.write("""
+Dyslexia, also known as reading disorder, is a disorder characterized by reading below the expected level for one's age. 
+Different people are affected to different degrees.
+The common symptoms include: Frequently making the same kinds of mistakes, like reversing letters, Having poor spelling, like spelling the same word correctly and 
+incorrectly in the same exercise, Having trouble remembering how words are spelled and applying spelling rules in writing, etc.
+
+Based on the spelling, grammatic, contextual and phonetics error the app predicts whether the person with the wrting has 
+dyslexia or not.""")
