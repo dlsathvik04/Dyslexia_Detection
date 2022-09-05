@@ -1,0 +1,49 @@
+Dyslexia or Dysgraphia:
+Reading well below the expected level for age:
+---count the number of times a word is pronounced wrong.(hope the user will be honest)
+
+Problems processing and understanding what is heard
+---count mistakes in following dictation
+
+Difficulty finding the right word or forming answers to questions
+---Paragraph comprehension
+
+Problems remembering the sequence of things
+---Simple remembering puzzle
+
+Difficulty seeing (and occasionally hearing) similarities and differences in letters and words
+---u,n,p,,q,b,d,m,w,s,z
+
+Difficulty spelling
+---done 
+
+Spending an unusually long time completing tasks that involve reading or writing
+Avoiding activities that involve reading
+--- ask some questions and hope the user will be honest
+
+
+Dyscalculia:
+- Difficulty in counting 2s. 5s and 10s
+--- give a question 
+
+- Unable to do basic mathematical calculations mentally
+--- simple questions (hope of honesty)
+
+- Difficulty in recognising basic mathematical signs such as plus and minus
+--- side by side math
+
+- Difficulty in understanding the concept of more than or less than
+--- compare questions
+
+- Struggles in remembering basic maths facts like 10+10 = 20
+- Does not make the connection between related math fact or fact families like 5+5=10, so 10-5= 5
+--- questions about halves and tenths
+
+- Has trouble recognising numerals
+--- give some digit to text
+
+- Does not understand left and right
+--- pictorial questions
+
+- Avoids playing games that involve strategies like checkers or soduku.
+--- ask and hope to be honest
