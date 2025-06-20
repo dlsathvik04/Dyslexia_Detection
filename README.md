@@ -15,8 +15,11 @@ streamlit run app.py
 
 ## Folder structure:
 
-### data:
-contains the datasets used for Machine learning. The handwriting samples of the dyslexic childern are in ```dyslexic``` directory and the non-dyslexic samples are in ```non_dyslexic``` directory. 
+### data
+
+contains the datasets used for Machine learning. The data used is manually collected for the project from the internet and is not medically verified. it may contain unintended biases, use the data at your own risk.
+
+The handwriting samples of the dyslexic childern are in ```dyslexic``` directory and the non-dyslexic samples are in ```non_dyslexic``` directory. 
 
 The ```data.csv``` has the extracted features of all the images in the above directories. the features are as follows:
 <ul>
